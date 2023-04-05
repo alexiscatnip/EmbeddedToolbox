@@ -10,27 +10,40 @@ export default function HexToDecimalConverter() {
 
   const handleHexInputChange = (text) => {
     setHexInput(text);
-    // Convert the hex input to decimal and update the output state
-    setDecInput(parseInt(text, 16).toString(10));
+
+    const isValidHex = /^[0-9A-Fa-f]+$/.test(text);
+    if (!isValidHex) {
+      setDecInput('Invalid Input.');
+    } else {
+      setDecInput(parseInt(text, 16).toString(10));
+    }
   };
 
   function handleDecInputChange(text) {
     setDecInput(text);
-    const hexValue = text.toString(16).toUpperCase();
-    setHexInput(hexValue);
+    const hexValue = text.toString(16);
+    if (isNaN(hexValue)) {
+      setHexInput("Invalid Input.");
+    } else {
+      setHexInput(hexValue.toUpperCase());
+    }
   }
   
 
   return (
     <View style = {styles.container}>
       <Text style = {styles.label}>Hex to Decimal Converter</Text>
-      <TextInput  style = {styles.input}
+      <TextInput  
+        style = {styles.input} 
+        testID="hex-input"  
         placeholder="Enter hex value"
         onChangeText={handleHexInputChange}
         value={hexInput}
         keyboardType="default"
       />
-      <TextInput  style = {styles.input}
+      <TextInput  
+        style = {styles.input}
+        testID="dec-input"
         placeholder="Enter Decimal value"
         onChangeText={handleDecInputChange}
         value={decInput}
