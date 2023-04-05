@@ -4,6 +4,8 @@
  *
  * @format
  */
+import HexToDecimalConverter from './src/components/HexToDecimalConverter';
+
 
 import React from 'react';
 import type {PropsWithChildren} from 'react';
@@ -76,6 +78,8 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+            <HexToDecimalConverter />
+
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
